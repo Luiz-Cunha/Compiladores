@@ -9,6 +9,9 @@ class Words{
   public String getType() {
         return type;
     }
+  public void setType(String t) {
+        this.type=t;
+    }
   public String getName() {
         return name;
     }

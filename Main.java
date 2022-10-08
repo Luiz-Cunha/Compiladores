@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+
+ 
 class Main {
   public static void main(String[] args) throws IOException{
   String [] keywords = new String[19];
@@ -166,7 +168,7 @@ List<String> linhasArquivo = Files.readAllLines(Paths.get(("program.txt")));
              i=0;
               j++;
             }
-        }
+        } 
           while(String.valueOf(linhasArquivo.get(j).charAt(i)).matches("^[-a-zA-Z0-9_]+")){
             plvr+=String.valueOf(linhasArquivo.get(j).charAt(i));
             i++;
@@ -175,7 +177,24 @@ List<String> linhasArquivo = Files.readAllLines(Paths.get(("program.txt")));
               j++;
             }
           }
-          newtoken = new Words("Cadeia", plvr);
+        if (plvr.matches("[0-9]+")){
+          newtoken = new Words("Numero", plvr);
+        }else{
+          boolean flag=false;
+          for(int k=0;k<18;k++){
+            if(plvr==keywords[k]){
+              flag=true;
+            }
+          }
+          if(flag==false){
+            newtoken = new Words("Cadeia", plvr);
+          } else{
+            newtoken = new Words("reservado", plvr);
+          }
+          
+        }
+          
+        
           plvr="";
           tokens.add(newtoken);
           i--;
@@ -188,8 +207,12 @@ List<String> linhasArquivo = Files.readAllLines(Paths.get(("program.txt")));
         tokens.remove(i);
       }
     }
-    for(int i=0;i<tokens.size();i++){
-      System.out.println(tokens.get(i).getType()+"---->" + tokens.get(i).getName());
+     
+    if(tokens.get(0).getName().matches("class")){
+      int Indice=Sintaticos._class(0, tokens);
+      System.out.println("Passou");
+    } else{
+      System.out.println("ERRO");
     }
 
 
