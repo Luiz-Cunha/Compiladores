@@ -1,12 +1,25 @@
-class Main inherits IO {
+class onefunction{
+function(arg : String) : void{
+out_string(arg);
+}
+}
+class Main inherits Main {
+function2(arg : String) : void{
+out_string(arg);
+}
     main(): Object {
         let hello: String <- "Hello, ",
+            n: onefunction,
             name: String <- "",
-            ending: String <- "!\n"
+            num: Int <- 10,
+            chad: Int <- 5*num+ if 1 = 1 then 2*chad else 5*num fi,
+            ending: String <-"!\n",
+            conc: String <- "concatenando" + while 1 = 1 loop hello + ending pool;
         in {
             out_string("Please enter your name:\n");
             name <- in_string();
-            out_string(hello.concat(name.concat(ending)));
+            n.function(conc);
+            function2(conc);
         }
     };
 };
